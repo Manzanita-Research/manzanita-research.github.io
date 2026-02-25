@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+/* ============================================
+   Manzanita Research — Design Tokens
+   ============================================ */
+
+@theme {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Source Serif 4", Georgia, serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", monospace;
+
+  --color-cream: #FAF9F6;
+  --color-warm-black: #2C2C2C;
+  --color-bark: #6B3A2A;
+  --color-terracotta: #C2714F;
+  --color-sage: #8B9E7E;
+  --color-ochre: #C49A3C;
+  --color-rust: #A0522D;
+  --color-lavender-dried: #9B8EA8;
+  --color-fog: #E8E5DF;
+  --color-dusk: #5C5C5C;
+  --color-night: #1A1A1A;
+  --color-night-surface: #242424;
+  --color-night-text: #E8E5DF;
+  --color-night-muted: #A0A0A0;
+}
+
+/* ============================================
+   CSS Variables for Theming
+   ============================================ */
+
+:root,
+[data-theme="light"] {
+  --bg-page: var(--color-cream);
+  --bg-surface: #F5F0EB;
+  --text-primary: var(--color-warm-black);
+  --text-secondary: var(--color-dusk);
+  --text-accent: var(--color-bark);
+  --border-color: var(--color-fog);
+  --shadow-warm: rgba(107, 58, 42, 0.08);
+  --shadow-warm-lg: rgba(107, 58, 42, 0.12);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg-page: var(--color-night);
+  --bg-surface: var(--color-night-surface);
+  --text-primary: var(--color-night-text);
+  --text-secondary: var(--color-night-muted);
+  --text-accent: var(--color-ochre);
+  --border-color: #333;
+  --shadow-warm: rgba(0, 0, 0, 0.3);
+  --shadow-warm-lg: rgba(0, 0, 0, 0.4);
+  color-scheme: dark;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--color-bark);
+  color: var(--color-cream);
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-variation-settings: "WONK" 1, "SOFT" 50;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: balance;
+}
+
+strong {
+  font-weight: 400;
+  color: var(--text-accent);
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+/* ============================================
+   Film Grain Overlay
+   ============================================ */
+
+.grain {
+  position: relative;
+}
+
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  z-index: 1;
+}
+
+[data-theme="dark"] .grain::after {
+  mix-blend-mode: soft-light;
+  opacity: 0.06;
+}
+
+/* ============================================
+   Scroll Reveal Animation
+   ============================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.3s; }
+.reveal-stagger > .reveal:nth-child(5) { transition-delay: 0.4s; }
+.reveal-stagger > .reveal:nth-child(6) { transition-delay: 0.5s; }
+.reveal-stagger > .reveal:nth-child(7) { transition-delay: 0.6s; }
+.reveal-stagger > .reveal:nth-child(8) { transition-delay: 0.7s; }
+
+/* ============================================
+   Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ============================================
+   Scrollbar Styling
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-fog);
+  border-radius: 4px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #444;
+}
