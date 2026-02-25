@@ -9,20 +9,20 @@
   --font-body: "Source Serif 4", Georgia, serif;
   --font-mono: "Geist Mono", "JetBrains Mono", monospace;
 
-  --color-cream: #FAF9F6;
-  --color-warm-black: #2C2C2C;
-  --color-bark: #6B3A2A;
-  --color-terracotta: #C2714F;
-  --color-sage: #8B9E7E;
-  --color-ochre: #C49A3C;
-  --color-rust: #A0522D;
-  --color-lavender-dried: #9B8EA8;
-  --color-fog: #E8E5DF;
-  --color-dusk: #5C5C5C;
-  --color-night: #1A1A1A;
+  --color-cream: #faf9f6;
+  --color-warm-black: #2c2c2c;
+  --color-bark: #6b3a2a;
+  --color-terracotta: #c2714f;
+  --color-sage: #8b9e7e;
+  --color-ochre: #c49a3c;
+  --color-rust: #a0522d;
+  --color-lavender-dried: #9b8ea8;
+  --color-fog: #e8e5df;
+  --color-dusk: #5c5c5c;
+  --color-night: #1a1a1a;
   --color-night-surface: #242424;
-  --color-night-text: #E8E5DF;
-  --color-night-muted: #A0A0A0;
+  --color-night-text: #e8e5df;
+  --color-night-muted: #a0a0a0;
 }
 
 /* ============================================
@@ -32,7 +32,7 @@
 :root,
 [data-theme="light"] {
   --bg-page: var(--color-cream);
-  --bg-surface: #F5F0EB;
+  --bg-surface: #f5f0eb;
   --text-primary: var(--color-warm-black);
   --text-secondary: var(--color-dusk);
   --text-accent: var(--color-bark);
@@ -80,9 +80,16 @@ body {
    Typography
    ============================================ */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
-  font-variation-settings: "WONK" 1, "SOFT" 50;
+  font-variation-settings:
+    "WONK" 1,
+    "SOFT" 100;
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--text-primary);
@@ -112,7 +119,7 @@ code {
 }
 
 .grain::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   opacity: 0.04;
@@ -136,7 +143,9 @@ code {
 .reveal {
   opacity: 0;
   transform: translateY(2rem);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 .reveal.is-visible {
@@ -145,21 +154,39 @@ code {
 }
 
 /* Stagger children */
-.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
-.reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.1s; }
-.reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.2s; }
-.reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.3s; }
-.reveal-stagger > .reveal:nth-child(5) { transition-delay: 0.4s; }
-.reveal-stagger > .reveal:nth-child(6) { transition-delay: 0.5s; }
-.reveal-stagger > .reveal:nth-child(7) { transition-delay: 0.6s; }
-.reveal-stagger > .reveal:nth-child(8) { transition-delay: 0.7s; }
+.reveal-stagger > .reveal:nth-child(1) {
+  transition-delay: 0s;
+}
+.reveal-stagger > .reveal:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.reveal-stagger > .reveal:nth-child(3) {
+  transition-delay: 0.2s;
+}
+.reveal-stagger > .reveal:nth-child(4) {
+  transition-delay: 0.3s;
+}
+.reveal-stagger > .reveal:nth-child(5) {
+  transition-delay: 0.4s;
+}
+.reveal-stagger > .reveal:nth-child(6) {
+  transition-delay: 0.5s;
+}
+.reveal-stagger > .reveal:nth-child(7) {
+  transition-delay: 0.6s;
+}
+.reveal-stagger > .reveal:nth-child(8) {
+  transition-delay: 0.7s;
+}
 
 /* ============================================
    Reduced Motion
    ============================================ */
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
   }
