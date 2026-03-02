@@ -4,7 +4,7 @@ import Base from "../layouts/Base.astro";
 
 const allProjects = await getCollection("projects");
 const projects = allProjects.sort(
-  (a, b) => new Date(b.data.pushedAt).getTime() - new Date(a.data.pushedAt).getTime(),
+  (a, b) => a.data.name.localeCompare(b.data.name),
 );
 
 function timeAgo(dateStr: string): string {
@@ -22,7 +22,7 @@ function timeAgo(dateStr: string): string {
 
 <Base title="Projects — Manzanita Research">
   <main class="px-6 pt-32 pb-24 md:px-8">
-    <div class="mx-auto max-w-[38rem]">
+    <div class="mx-auto max-w-6xl">
       <p class="reveal mb-6 font-mono text-xs uppercase tracking-[0.2em] text-[var(--color-sage)]">
         Open source
       </p>
@@ -33,34 +33,32 @@ function timeAgo(dateStr: string): string {
         Everything we're working on, out in the open.
       </p>
 
-      <div class="mt-16 space-y-6">
+      <div class="mt-16 grid grid-cols-1 gap-x-4 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
           <a
             href={project.data.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="reveal block rounded-lg border border-[var(--border-color)] px-5 py-4 transition-colors hover:border-[var(--text-secondary)]"
+            class="reveal flex flex-col transition-opacity hover:opacity-70"
           >
-            <div class="flex items-start justify-between gap-4">
-              <div class="min-w-0">
-                <h2 class="font-display text-lg text-[var(--text-primary)]">
-                  {project.data.name}
-                  {project.data.isArchived && (
-                    <span class="ml-2 align-middle font-mono text-xs uppercase tracking-wider text-[var(--text-secondary)] opacity-60">
-                      archived
-                    </span>
-                  )}
-                </h2>
-                {project.data.description && (
-                  <p class="mt-1 text-sm text-[var(--text-secondary)]">
-                    {project.data.description}
-                  </p>
-                )}
-              </div>
-              <span class="shrink-0 pt-1 font-mono text-xs text-[var(--text-secondary)] opacity-60">
-                {timeAgo(project.data.pushedAt)}
-              </span>
+            <span class="font-mono text-xs text-[var(--text-secondary)] opacity-60">
+              {timeAgo(project.data.pushedAt)}
+            </span>
+            <div class="mt-1 flex items-start justify-between gap-3">
+              <h2 class="font-display text-lg text-[var(--text-primary)]">
+                {project.data.name}
+              </h2>
+              {project.data.isArchived && (
+                <span class="shrink-0 pt-1 font-mono text-xs uppercase tracking-wider text-[var(--text-secondary)] opacity-60">
+                  archived
+                </span>
+              )}
             </div>
+            {project.data.description && (
+              <p class="mt-2 text-sm text-pretty text-[var(--text-secondary)]">
+                {project.data.description}
+              </p>
+            )}
           </a>
         ))}
       </div>
