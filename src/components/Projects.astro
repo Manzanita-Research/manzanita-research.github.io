@@ -1,0 +1,150 @@
+---
+import Placeholder from "./Placeholder.astro";
+
+interface Project {
+  name: string;
+  tagline: string;
+  description: string;
+  status: string;
+  url: string;
+  heroPrompt: string;
+}
+
+const projects: Project[] = [
+  {
+    name: "Toneword",
+    tagline: "Semantic EQ",
+    description:
+      "What if your EQ just said Warmth, Bite, Air, Body, Glass, Velvet instead of making you stare at frequency curves? Six perceptual dimensions mapped to an 11-band parametric EQ underneath. Turns out ears are smarter than eyes.",
+    status: "v1.0 shipped",
+    url: "https://github.com/Manzanita-Research/toneword",
+    heroPrompt:
+      "Close-up of a woman's hands turning unmarked wooden knobs on an unfamiliar EQ device, warm amber glow from a small display casting light across her fingers, the body of a guitar just visible in soft bokeh behind her, intimate and absorbed. Eco-futurist, feminine, 1980s-meets-2180s California. Kodak Eastman 100T 5247 35mm film, grain, halation, faded warm colors, natural lens flares, shallow depth of field",
+  },
+  {
+    name: "Glorybook",
+    tagline: "Live setlist sync",
+    description:
+      "Real-time setlist sync for bands. Bandleader picks the song, everyone's chart updates. Browse ahead if you want, snap back to live with one tap. Bring a travel router to the gig and it runs without WiFi.",
+    status: "v1.0 shipped",
+    url: "https://github.com/Manzanita-Research/glorybook",
+    heroPrompt:
+      "A band rehearsal room in warm lamplight, a woman on a stool with an acoustic guitar glancing at a tablet on a music stand, other stands with devices showing chord charts in soft focus beyond her, cables on the floor, jackets draped over amps, the room lived-in and mid-session. Eco-futurist, feminine, 1980s-meets-2180s California. Kodak Eastman 100T 5247 35mm film, grain, halation, faded warm colors, natural lens flares, shallow depth of field",
+  },
+  {
+    name: "Audiotree",
+    tagline: "Audio graph components",
+    description:
+      "React primitives for building audio apps in the browser. Your component tree becomes your signal flow — mixers, tracks, buses, sends, meters. The part between the Web Audio API and having an actual DAW.",
+    status: "v1.1 in progress",
+    url: "https://github.com/Manzanita-Research/audiotree",
+    heroPrompt:
+      "An unfamiliar modular instrument seen from above at a slight angle, patch cables in earth tones — terracotta, sage, rust, cream — connecting panels of oiled walnut and brushed copper, softly glowing amber connection points, a woman's hand mid-patch reaching for a cable, a potted fern at the edge of frame. Eco-futurist, feminine, 1980s-meets-2180s California. Kodak Eastman 100T 5247 35mm film, grain, halation, faded warm colors, natural lens flares, shallow depth of field",
+  },
+  {
+    name: "Grove",
+    tagline: "3D spatial mixer",
+    description:
+      "What if you could see your mix? Tracks float as colored spheres in 3D space — horizontal is pan, vertical is frequency, depth is reverb. Drag to mix. Heavily inspired by David Gibson's Art of Mixing. Early days, but the idea is right.",
+    status: "Proof of concept",
+    url: "https://github.com/Manzanita-Research/grove",
+    heroPrompt:
+      "A darkened studio with floating spheres of warm colored light — terracotta, sage, ochre, dried lavender — suspended at different heights and depths like a three-dimensional mix, a woman standing among them with her eyes closed and one hand raised as if adjusting something invisible, soft shadows on the walls. Eco-futurist, feminine, 1980s-meets-2180s California. Kodak Eastman 100T 5247 35mm film, grain, halation, faded warm colors, natural lens flares, shallow depth of field",
+  },
+  {
+    name: "Chaparral",
+    tagline: "Shared skills and config",
+    description:
+      "How we keep all of this in sync. One brand repo is the source of truth — chaparral symlinks it into every sibling project. Shared AI skills, org-wide voice, multi-repo without the pain. Named after the biome that connects everything on a California hillside.",
+    status: "Complete",
+    url: "https://github.com/Manzanita-Research/chaparral",
+    heroPrompt:
+      "A wide shot of a California hillside at golden hour, manzanita and ceanothus and sage covering the slope, thin bioluminescent threads barely visible between the root systems, connecting everything like a living circuit board, the ocean just visible on the far horizon, warm haze. Eco-futurist, feminine, 1980s-meets-2180s California. Kodak Eastman 100T 5247 35mm film, grain, halation, faded warm colors, natural lens flares, shallow depth of field",
+  },
+  {
+    name: "Understory",
+    tagline: "Open-source AI skills",
+    description:
+      "Open-source tools for working with AI agents. The gap between a good conversation and an actual running project is bigger than it should be — understory helps close it. Take it, fork it, make it yours.",
+    status: "Active",
+    url: "https://github.com/Manzanita-Research/understory",
+    heroPrompt:
+      "Redwood forest understory in soft morning mist, ferns and redwood sorrel glowing in diffused light filtering through the canopy far above, a barely-visible thread of warm amber light tracing along the forest floor like a data stream, everything quiet and ancient and alive. Eco-futurist, feminine, 1980s-meets-2180s California. Kodak Eastman 100T 5247 35mm film, grain, halation, faded warm colors, natural lens flares, shallow depth of field",
+  },
+];
+
+const colorMap: Record<string, string> = {
+  shipped: "bg-[var(--color-sage)] text-[var(--color-cream)]",
+  "in progress": "bg-[var(--color-ochre)] text-[var(--color-warm-black)]",
+  complete: "bg-[var(--color-sage)] text-[var(--color-cream)]",
+  active: "bg-[var(--color-bark)] text-[var(--color-cream)]",
+};
+
+function getStatusClasses(status: string): string {
+  const key = Object.keys(colorMap).find((k) =>
+    status.toLowerCase().includes(k),
+  );
+  return key
+    ? colorMap[key]
+    : "bg-[var(--color-fog)] text-[var(--text-secondary)]";
+}
+---
+
+<section id="work" class="px-6 py-32 md:px-8 md:py-40">
+  <div class="mx-auto max-w-6xl">
+    <div class="reveal mb-20 max-w-2xl">
+      <p class="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-[var(--color-ochre)]">
+        The work
+      </p>
+      <h2 class="font-display text-4xl leading-snug font-light md:text-5xl">
+        Everything here started because someone needed it at a gig or in a session.
+      </h2>
+      <p class="mt-6 text-lg text-[var(--text-secondary)]">
+        That's still the test. If it doesn't make the music better, it doesn't ship.
+      </p>
+    </div>
+
+    <div class="space-y-24 lg:space-y-32">
+      {projects.map((project, i) => {
+        const isEven = i % 2 === 0;
+        return (
+          <div
+            class:list={["reveal grid items-center gap-8 lg:grid-cols-2 lg:gap-12"]}
+            style={!isEven ? "direction: rtl" : undefined}
+          >
+            <div style={!isEven ? "direction: ltr" : undefined}>
+              <Placeholder prompt={project.heroPrompt} aspectRatio="3/2" />
+            </div>
+            <div style={!isEven ? "direction: ltr" : undefined}>
+              <div class="mb-3 flex items-center gap-3">
+                <span class:list={["inline-block rounded-full px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider", getStatusClasses(project.status)]}>
+                  {project.status}
+                </span>
+              </div>
+              <h3 class="font-display text-3xl font-light text-[var(--text-primary)] md:text-4xl">
+                {project.name}
+              </h3>
+              <p class="mt-1 font-mono text-xs uppercase tracking-widest text-[var(--color-bark)]">
+                {project.tagline}
+              </p>
+              <p class="mt-4 leading-relaxed text-[var(--text-secondary)]">
+                {project.description}
+              </p>
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-6 inline-flex items-center gap-2 text-sm text-[var(--color-bark)] transition-colors hover:text-[var(--color-warm-black)]"
+              >
+                View on GitHub
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M7 17L17 7M17 7H7M17 7v10" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

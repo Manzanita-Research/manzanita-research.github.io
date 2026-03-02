@@ -80,18 +80,12 @@ body {
    Typography
    ============================================ */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-variation-settings:
-    "WONK" 1,
-    "SOFT" 100;
+  font-variation-settings: "WONK" 1, "SOFT" 100;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  letter-spacing: -0.04em;
   color: var(--text-primary);
   text-wrap: balance;
 }
@@ -143,9 +137,7 @@ code {
 .reveal {
   opacity: 0;
   transform: translateY(2rem);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .reveal.is-visible {
@@ -154,48 +146,28 @@ code {
 }
 
 /* Stagger children */
-.reveal-stagger > .reveal:nth-child(1) {
-  transition-delay: 0s;
-}
-.reveal-stagger > .reveal:nth-child(2) {
-  transition-delay: 0.1s;
-}
-.reveal-stagger > .reveal:nth-child(3) {
-  transition-delay: 0.2s;
-}
-.reveal-stagger > .reveal:nth-child(4) {
-  transition-delay: 0.3s;
-}
-.reveal-stagger > .reveal:nth-child(5) {
-  transition-delay: 0.4s;
-}
-.reveal-stagger > .reveal:nth-child(6) {
-  transition-delay: 0.5s;
-}
-.reveal-stagger > .reveal:nth-child(7) {
-  transition-delay: 0.6s;
-}
-.reveal-stagger > .reveal:nth-child(8) {
-  transition-delay: 0.7s;
-}
+.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.3s; }
+.reveal-stagger > .reveal:nth-child(5) { transition-delay: 0.4s; }
+.reveal-stagger > .reveal:nth-child(6) { transition-delay: 0.5s; }
+.reveal-stagger > .reveal:nth-child(7) { transition-delay: 0.6s; }
+.reveal-stagger > .reveal:nth-child(8) { transition-delay: 0.7s; }
 
 /* ============================================
    Reduced Motion
    ============================================ */
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
   }
-
   .reveal {
     opacity: 1;
     transform: none;
   }
-
   html {
     scroll-behavior: auto;
   }
@@ -205,19 +177,7 @@ code {
    Scrollbar Styling
    ============================================ */
 
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-page);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-fog);
-  border-radius: 4px;
-}
-
-[data-theme="dark"] ::-webkit-scrollbar-thumb {
-  background: #444;
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-page); }
+::-webkit-scrollbar-thumb { background: var(--color-fog); border-radius: 4px; }
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: #444; }

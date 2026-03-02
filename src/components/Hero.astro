@@ -1,0 +1,59 @@
+---
+import Placeholder from "./Placeholder.astro";
+---
+
+<section class="grain relative flex min-h-[100dvh] flex-col justify-center overflow-hidden px-6 md:px-8">
+  <!-- Warm gradient background -->
+  <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--bg-page)] via-transparent to-[var(--bg-page)]"></div>
+
+  <div class="relative z-10 mx-auto w-full max-w-6xl">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <div class="max-w-2xl">
+        <p class="reveal mb-6 font-mono text-xs uppercase tracking-[0.2em] text-[var(--color-ochre)]">
+          Independent AI Lab &middot; California
+        </p>
+        <h1 class="reveal font-display text-5xl leading-[1.05] font-light md:text-6xl lg:text-7xl">
+          We build{" "}
+          <em class="not-italic text-[var(--color-bark)]">instruments</em>{" "}
+          for the people who make music.
+        </h1>
+        <p class="reveal mt-8 max-w-lg text-lg leading-relaxed text-[var(--text-secondary)]">
+          A small, independent lab making music technology the way it should
+          be made — by musicians, for musicians, in the open.
+        </p>
+        <div class="reveal mt-10 flex flex-wrap gap-4">
+          <a
+            href="#work"
+            class="inline-flex items-center gap-2 rounded-full bg-[var(--color-bark)] px-6 py-3 text-sm font-medium text-[var(--color-cream)] transition-all duration-300 hover:bg-[var(--color-warm-black)]"
+          >
+            See what we're building
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7v10" />
+            </svg>
+          </a>
+          <a
+            href="https://github.com/manzanita-research"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-full border border-[var(--border-color)] px-6 py-3 text-sm text-[var(--text-secondary)] transition-all duration-300 hover:border-[var(--text-primary)] hover:text-[var(--text-primary)]"
+          >
+            GitHub
+          </a>
+        </div>
+      </div>
+      <div class="reveal hidden lg:block">
+        <Placeholder
+          prompt="A woman's hands assembling an unfamiliar electronic instrument on a sunlit wooden workbench, components that don't quite exist yet — brushed copper faceplates, amber indicator lights, hand-wound coils — manzanita branches visible through an open window overlooking coastal California hills, late afternoon light pooling on the wood grain. Eco-futurist, feminine, 1980s-meets-2180s California. Kodak Eastman 100T 5247 35mm film, grain, halation, faded warm colors, natural lens flares, shallow depth of field"
+          aspectRatio="4/5"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" class="opacity-40">
+      <path d="M12 5v14M19 12l-7 7-7-7" />
+    </svg>
+  </div>
+</section>
