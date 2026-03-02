@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+import Base from "../layouts/Base.astro";
+
+const posts = (await getCollection("farm-stand")).sort(
+  (a, b) => b.id.localeCompare(a.id),
+);
+---
+
+<Base title="Farm Stand — Manzanita Research">
+  <main class="px-6 pt-32 pb-24 md:px-8">
+    <div class="mx-auto max-w-[38rem]">
+      <p class="reveal mb-6 font-mono text-xs uppercase tracking-[0.2em] text-[var(--color-sage)]">
+        Building in public
+      </p>
+      <h1 class="reveal font-display text-4xl leading-snug font-light md:text-5xl">
+        Farm stand
+      </h1>
+      <p class="reveal mt-4 text-lg text-[var(--text-secondary)]">
+        Here's what we brought to market.
+      </p>
+
+      <div class="mt-16 space-y-16">
+        {posts.map(async (post) => {
+          const { Content } = await render(post);
+          return (
+            <article class="reveal">
+              <div class="prose prose-neutral max-w-none text-[var(--text-secondary)] [&>h2]:font-display [&>h2]:text-2xl [&>h2]:font-light [&>h2]:text-[var(--text-primary)] [&>p]:text-[var(--text-secondary)] [&>p>strong]:text-[var(--text-accent)] [&>p>strong]:font-normal">
+                <Content />
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </main>
+</Base>
