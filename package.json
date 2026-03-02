@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "bun run scripts/fetch-repos.ts",
     "build": "astro build",
     "preview": "astro preview"
   },
