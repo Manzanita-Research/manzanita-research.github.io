@@ -9,8 +9,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  metadata: read
-
+  
 concurrency:
   group: "pages"
   cancel-in-progress: false
