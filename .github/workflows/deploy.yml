@@ -9,6 +9,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  metadata: read
 
 concurrency:
   group: "pages"
@@ -27,6 +28,8 @@ jobs:
       - run: bun install --frozen-lockfile
 
       - run: bun run build
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - uses: actions/upload-pages-artifact@v3
         with:
